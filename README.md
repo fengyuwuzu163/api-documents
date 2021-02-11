@@ -1,7 +1,7 @@
 # 聚宝 Pay API Documents
 
 
-### [简体中文](https://github.com/fengyuwuzu163/zh_CN.md)
+### [简体中文](https://github.com/fengyuwuzu163/api-documents/blob/master/zh_CN.md)
 
 
 

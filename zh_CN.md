@@ -176,8 +176,8 @@ data   | 业务数据，需根据相应接口进行逻辑处理,有时为空(不
 
 ```
 {
-  "code": 200,
-  "message": "success",
+  "ret": 0,
+  "msg": "success",
   "data": {
     "appid": "1000258",
     "attach": "",
@@ -193,73 +193,52 @@ data   | 业务数据，需根据相应接口进行逻辑处理,有时为空(不
 
 ```
 {
-  "code": 40500,
-  "message": "余额不足"
+  "ret": 40500,
+  "msg": "订单号重复"
 }
 ```
 
 
 ## 2 接口列表
 
-### 2.1 支付
+### 2.1 下单
 
-Pos机根据使用场景，提交相应请求参数，完成相应支付业务
 
 ### Api:
 
 ```
-/payment/pay
+_m=pay_gateway&_a=apply_pay
 ```
 ### Parameters 请求参数
 
 字段|变量名|必填|类型|描述
 ----|----|----|----|----
-appid|appid|是|String|appid,由商户后台获取，或者登录获取
-签名|sign|是|String|参考签名方法
-支付方式|payment|是|String|micropay,alipay.qrcode,wechat.qrcode
-支付提供方|provider|可选|String|provider取值:wechat,alipay 当payment为micropay时,如果指定了provider,则会检查相应的支付授权码是否是对应的支付提供方的code，如果不是，不能支付
+商户号|mch_id|是|String|mch_id,由商户后台获取，或者登录获取
+支付渠道枚举|pay_channel_id|是|int|支付渠道枚举201:位置h5支付
 订单金额|total_fee|是|Int|支付金额 单位为"分" 如10即0.10元
-支付授权码|code|可选|String|payment为"micropay"时填写 如支付宝 288271620985824610 微信 134519771100657507 服务端据此参数值区分
-商户自身订单号|out\_trade\_no|可选|String|如果商户有自己的订单系统，可以自己生成订单号，否则建议交由蓝海支付后台自动生成
+商户自身订单号|out\_trade\_no|可选|String|如果商户有自己的订单系统，可以自己生成订单号，否则由聚宝生成
 异步通知url|notify_url|可选|String|异步通知url
-openid|sub_openid|可选|String|商户公众号、小程序获取的openid
-微信APPID|sub_appid|可选|String|商户公众号、小程序、APP的AppId(微信公众号、小程序、APP支付必传)
-sub\_blue\_mch\_id|sub\_blue\_mch\_id|可选|Int|蓝海子商户Id
-store\_id|store\_id|可选|Int|Store Id
 body|body|可选|String|商品名称
-附加数据|attach|可选|String|附加数据，在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据
-h5\_redirect\_url|h5\_redirect\_url|可选|String|微信香港钱包公众号支付跳转url,支付宝WAP跳转url
-钱包|wallet|可选|String|限定支付钱包地区如HK,CN  仅支付宝online有效
+附加数据|attach|可选|String(128)|附加数据，支付通知中原样返回，该字段主要用于商户携带订单的自定义数据
+支付完成跳转地址|return_url|可选|支付完成后的跳转地址
 
-
-#### payment 参数说明
+#### pay_channel_id 参数说明
 
 参数值|描述
 ----------|----------
-micropay|刷卡支付 此时需传递支付授权码 `code` 参数
-alipay.qrcode|支付宝二维码
-alipay.wappay|支付宝WAP线上
-alipay.app|支付宝APP
-wechat.qrcode|微信二维码
-聚宝.qrcode|混合二维码 可以直接跳转到qrcode对应的网址支付，也可以生成二维码供用户扫描
-wechat.jsapi|公众号、小程序支付
-wechat.app|微信APP支付
-unionpay.qrcode|银联二维码
-unionpay.link|银联UPOP
+101|支付宝wap支付
+201|微信H5支付
 
 
-支付返回后，检查交易状态trade_state,并根据其结果，决定是否调用订单查询接口进行结果查询处理
+支付返回后，status,并根据其结果，决定是否调用订单查询接口进行结果查询处理
 
-### 订单支付状态 trade_state 说明
+### 订单支付状态 status 说明
 
 ```
-NOTPAY:未支付
-SUCCESS:支付成功
-REFUND:已退款
-CLOSED:已关闭
-REVOKED:已撤销
-USERPAYING:支付中
-PAYERROR:支付异常
+1:未支付
+2:支付成功
+3:已退款
+4:已关闭
 ```
 
 ### 正确响应数据说明

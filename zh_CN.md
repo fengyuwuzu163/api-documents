@@ -214,7 +214,7 @@ _m=pay_gateway&_a=apply_pay
 字段|变量名|必填|类型|描述
 ----|----|----|----|----
 商户号|mch_id|是|String|mch_id,由商户后台获取，或者登录获取
-支付渠道枚举|pay_channel_id|是|int|支付渠道枚举201:位置h5支付
+支付渠道枚举|pay_channel_id|是|int|支付渠道枚举201:微信h5支付
 订单金额|total_fee|是|Int|支付金额 单位为"分" 如10即0.10元
 商户自身订单号|out\_trade\_no|可选|String|如果商户有自己的订单系统，可以自己生成订单号，否则由聚宝生成
 异步通知url|notify_url|可选|String|异步通知url

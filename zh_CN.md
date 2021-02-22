@@ -315,6 +315,7 @@ body|body|可选|String|商品名称
 
 字段|变量名|必填|类型|描述
 ----|----|---|---|----
+商户号|mch_id|是|String|商户号
 商户订单号|out_trade_no|是|String|商户订单号
 平台订单号|order_sn|是|String|商户订单号
 支付渠道枚举|pay_channel_id|是|int|支付渠道枚举201:微信h5支付

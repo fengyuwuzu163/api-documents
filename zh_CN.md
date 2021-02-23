@@ -176,14 +176,14 @@ data   | 业务数据，需根据相应接口进行逻辑处理,有时为空(不
 
 ```
 {
-  "ret": 0,
-  "msg": "success",
-  "data": {
-    "appid": "1000258",
-    "attach": "",
-    "bank_type": "",
-    "body": "Shopping"
-  }
+    "ret":0,
+    "msg":"success",
+    "data":{
+        "out_trade_no":"20210223213715011892",
+        "order_sn":"20210223213715012841",
+        "code_url":"http://boxpay.cn/index.php?_m=pay¶meter=20210223213715012841"
+    },
+    "_trace_no":"20210223213714-5996-6035050af0592"
 }
 
 ```
@@ -258,15 +258,14 @@ body|body|可选|String|商品名称
 
 ```
 {
-  "appid": "1000258",
-  "payment": alipay.wappay,
-  "total_fee": "20",
-  "wallet": "CN",
-  "notify_url": "http://聚宝.com/notify",
-  "h5_redirect_url": "http://聚宝.com/notify",
-  "store_id" : "1000342",
-  "body" : "shopping",
-  "sign": "1FBFA9773ACEA258829477xxxxxxxxxx"
+    "mch_id":"10502105689001",
+    "pay_channel_id":"201",
+    "total_fee":"1",
+    "notify_url":"http://www.baidu.com",
+    "body":"111",
+    "attach":"222",
+    "return_url":"http://www.baidu.com",
+    "sign":"505D2D1030B1D6562933723EB952632D"
 }
 ```
 
@@ -274,37 +273,14 @@ body|body|可选|String|商品名称
 
 ```
 {
-  "code": 200,
-  "message": "success",
-  "data": {
-    "appid": 1000258,
-    "attach": "",
-    "bank_type": "",
-    "body": "shopping",
-    "cash_fee": "0",
-    "cash_fee_type": "",
-    "create_time": "1557469674",
-    "detail": "",
-    "discount": "0",
-    "fee_type": "HKD",
-    "id": "1006228",
-    "is_subscribe": "N",
-    "mch_name": "聚宝 Pay",
-    "nonce_str": "FBWRgJU1GC",
-    "out_trade_no": "1120190510xxxxxxxxxxxxxxxx",
-    "pay_amount": "20",
-    "provider": "alipay",
-    "qrcode": "https://api.yedpay.com/o-wap/NMJVPOM78RMMK70RL8",
-    "sn": "1120190510xxxxxxxxxxxxxxxx",
-    "time_end": 0,
-    "total_fee": "20",
-    "total_refund_fee" : 0,
-    "trade_state": "NOTPAY",
-    "trade_type": "WAPPAY",
-    "transaction_id": "",
-    "wallet": "CN",
-    "sign": "5355B47A4F99F86E46658Fxxxxxxxxxx"
-  }
+    "ret":0,
+    "msg":"success",
+    "data":{
+        "out_trade_no":"20210223213715011892",
+        "order_sn":"20210223213715012841",
+        "code_url":"http://boxpay.cn/index.php?_m=parameter=20210223213715012841"
+    },
+    "_trace_no":"20210223213714-5996-6035050af0592"
 }
 ```
 
@@ -317,7 +293,7 @@ body|body|可选|String|商品名称
 ----|----|---|---|----
 商户号|mch_id|是|String|商户号
 商户订单号|out_trade_no|是|String|商户订单号
-平台订单号|order_sn|是|String|商户订单号
+平台订单号|order_sn|是|String|平台订单号
 支付渠道枚举|pay_channel_id|是|int|支付渠道枚举201:微信h5支付
 body|body|可选|String|商品名称
 订单金额|total_fee|是|int|订单金额
@@ -337,3 +313,35 @@ body|body|可选|String|商品名称
 2. 后台通知交互时，如果平台收到商户的应答不符合规范或超时，平台会判定本次通知失败，按照机制重新发送通知，
 
 
+### 2.2 订单查询
+
+#### Api:
+
+```
+_m=payment&_a=query
+```
+#### Parameters 请求参数
+
+字段|变量名|必填|类型|描述
+----|----|----|----|----
+商户号|mch_id|是|String|商户号
+平台订单号|order_sn|是|String|平台订单号
+数据签名|sign|是|String|如"7FB42F08C85670A86431F9710xxxxxx"
+
+### 正确响应数据说明
+
+响应结果response.data数据说明
+
+字段|变量名|必填|类型|描述
+----|----|---|---|----
+商户号|mch_id|是|String|商户号
+商户订单号|out_trade_no|是|String|商户订单号
+平台订单号|order_sn|是|String|平台订单号
+支付渠道枚举|pay_channel_id|是|int|支付渠道枚举
+订单金额|total_fee|是|int|订单金额
+订单状态|status|是|int|订单状态
+实付金额|cash_fee|是|int|实付金额
+订单创建时间|created_at|是|datetime|示例:2021-02-17 20:02:40
+支付时间|finish_time|是|datetime|示例:2021-02-17 20:03:40
+body|body|可选|String|商品名称
+附加数据|attach|可选|String(128)|附加数据

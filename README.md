@@ -5,8 +5,11 @@
 
 
 
-### Online demo
+### 在线 demo
 
 github: https://github.com/fengyuwuzu163/api-documents/payment-demo
 
-website: http://demo.epepsb.cn
+
+### 在线测试
+
+website: https://demo.234k.cn

@@ -220,7 +220,7 @@ _m=pay_gateway&_a=apply_pay
 异步通知url|notify_url|可选|String|异步通知url
 body|body|可选|String|商品名称
 附加数据|attach|可选|String(128)|附加数据，支付通知中原样返回，该字段主要用于商户携带订单的自定义数据
-支付完成跳转地址|return_url|可选|支付完成后的跳转地址
+支付完成跳转地址|return_url|可选|支付完成后的跳转地址,注意不能带参数，跳转时地址栏有带out_trade_no和order_sn参数
 版本|version|可选|nodejs和java语言必填固定值2
 
 #### pay_channel_id 参数说明

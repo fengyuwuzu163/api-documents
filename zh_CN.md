@@ -35,7 +35,7 @@
     }
 ```
 
-1.2.2. 将参数按照键值对（keyvalue）的形式排列,按照参数名ASCII字典序排序,并用&连接
+1.2.2. 将参数按照键值对（keyvalue）的形式排列,按照参数名ASCII字典序排序
 
 ```
 str = "attach11bodyabcmch_id10502105689001notify_urlhttps://www.baidu.comout_trade_no2021020920221357790pay_channel_id304return_urlhttps://www.baidu.comtotal_fee10000"

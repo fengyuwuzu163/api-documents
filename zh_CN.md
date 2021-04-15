@@ -223,6 +223,7 @@ body|body|可选|String|商品名称
 支付完成跳转地址|return_url|可选|支付完成后的跳转地址,注意不能带参数，跳转时地址栏有带out_trade_no和order_sn参数
 版本|version|可选|nodejs和java语言必填固定值2
 是否国际|is_adv|可选|国内传0，海外(香港，其他)传1。当传1时支付成功回调会走国际专线
+数据签名|sign|是|String|如"7FB42F08C85670A86431F9710xxxxxx",用于验证签名
 
 #### pay_channel_id 参数说明
 

@@ -6,9 +6,9 @@
 
 #### 调用聚宝 Pay接口须遵守以下规则：
 
-1. 请求方式一律使用 POST 并将请求的数据参数的JSON字符串以 http body的方式传递
+1. 请求方式一律使用 POST 并将请求的数据参数以from-data字符串的方式传递
 
-2. 请求的数据格式统一使用JSON格式，若参数有json字符串请转义双引号（\"）
+2. 请求的数据格式统一使用from-data格式，若参数有json字符串请转义双引号（\"）
 
 3. 字符串编码请统一使用UTF-8
 
@@ -70,7 +70,7 @@ FF35FA2EBFB0DD709C33D58A26EEABDE
 ####  示例
 
 ```
-Content-Type: application/json,
+Content-Type: x-www-from-urlencoded,
 Content-Length: 128,
 
 ```
@@ -114,7 +114,7 @@ function makeSign($params, $md5_key)
 
 ```
 
-境内：https://api.234k.cn
+境内：https://api.234k.cn/
 
 ```
 
@@ -207,7 +207,7 @@ data   | 业务数据，需根据相应接口进行逻辑处理,有时为空(不
 ### Api:
 
 ```
-_m=pay_gateway&_a=apply_pay
+index.php?_m=pay_gateway&_a=apply_pay
 ```
 ### Parameters 请求参数
 
@@ -322,7 +322,7 @@ body|body|可选|String|商品名称
 #### Api:
 
 ```
-_m=payment&_a=query
+index.php?_m=payment&_a=query
 ```
 #### Parameters 请求参数
 
